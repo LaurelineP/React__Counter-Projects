@@ -27,8 +27,11 @@ Good to know:
 
 
 ## :round_pushpin: Project branches - tools
+- **REACT-TESTING-LIBRARY** — June 2019
+    - **react-testing-library**: UI testing tool
+    - **jest-dom**: DOM testing tool
 
-- **REACT COUNTER** — June 2019
+- ✅ **REACT COUNTER** — June 2019
     - **create-react-app**: for dependencies
     - **react 16.8.6** (with latest hooks)
     - **node-sass**: favorite styling tool
