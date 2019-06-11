@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <p
+      class="result"
+      data-testid="resultInit"
+    >
+      0
+    </p>
+    <div
+      class="buttons-container"
+    >
+      <button>
+        +
+      </button>
+      <button>
+        -
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
