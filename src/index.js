@@ -5,7 +5,7 @@ import './styles/index.scss'
 
 const App =  () => {
     return (
-        <Counter />
+        <Counter init = {0} />
     )
 }
 
