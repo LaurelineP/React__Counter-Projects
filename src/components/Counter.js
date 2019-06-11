@@ -9,8 +9,8 @@ const Counter = ( { init }) => {
     <div className = "card">
       <p className="result">{count}</p>
       <div className = "buttons-container">
-        <button onClick = { increment }>+</button>
         <button onClick = { decrement }>-</button>
+        <button onClick = { increment }>+</button>
       </div>
     </div>
   )
