@@ -1,14 +1,18 @@
 import React from 'react';
 import { render as RRender } from 'react-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup, within } from '@testing-library/react';
 
 import 'jest-dom/extend-expect';
 import Counter from '../components/Counter';
 
-// USING REACTDOM RENDER
-/* 0. testing that the component renders */
-/* 1. testing result from triggered buttons */
+// Will clean the DOM at the end of every test
+afterEach(cleanup)
 
+// USING REACTDOM RENDER
+/**
+ * 0. testing that the component renders
+ * 1. testing result from triggered buttons 
+ */
 function triggerWithReactDOM() {
     test('[ REACT-DOM ] inits elements in component', () => {
         // 0. create a div to simulate render div
@@ -43,7 +47,7 @@ function triggerWithReactDOM() {
 function triggerWithRTL() {
     test('[ REACT-TESTING-LIBRARY ] inits elements in component', () => {
         // 0. checking elements initialization
-        const { getByText } = render( <Counter /> );
+        const { getByText, debug, unmount } = render( <Counter /> );
         const result = getByText( '0' );
         const incrementBtn = getByText( '+' );
         const decrementBtn = getByText( '-' );
@@ -56,8 +60,31 @@ function triggerWithRTL() {
         expect( result.innerHTML ).toBe( '0' );
         fireEvent.click( decrementBtn );
         expect( result.innerHTML ).toBe( '0' );
+
+        /** 
+         * 3. afterAll(cleanup) : will cleanup the dom at the end of every test
+         * 4. debug([<el>]) : will log your dom in a pretty way ( also see prettyDOM toom)
+         * 5. unmount : unmount your component
+         * 6. asFragment shapshot your component by creating a copy
+         * 7. within ( an alias for getQueriesForElement ) takes a DOM & binds it to the query function
+        */
+
+
+        // 4. debug p in DOM
+        debug( result );
+
+        // 5. unmounting component:
+        debug();        // --> shows the full DOM
+        unmount();      // --> clean the DOM from your component
+        debug();        // --> shows the full DOM ( cleaned )
+
     });
 }
 
-triggerWithReactDOM();
-//triggerWithRTL();
+//triggerWithReactDOM();
+triggerWithRTL();
+
+/**
+ * Try to avoid snapshots
+ */
+
