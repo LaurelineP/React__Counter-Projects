@@ -1,6 +1,6 @@
 import React from 'react';
 import { render as RRender } from 'react-dom';
-import { render, fireEvent, cleanup, within } from '@testing-library/react';
+import { render, fireEvent, cleanup, within, getByTestId } from '@testing-library/react';
 
 import 'jest-dom/extend-expect';
 import Counter from '../components/Counter';
@@ -67,8 +67,8 @@ function triggerWithRTL() {
          * 5. unmount : unmount your component
          * 6. asFragment shapshot your component by creating a copy
          * 7. within ( an alias for getQueriesForElement ) takes a DOM & binds it to the query function
+         * 
         */
-
 
         // 4. debug p in DOM
         debug( result );
@@ -79,6 +79,20 @@ function triggerWithRTL() {
         debug();        // --> shows the full DOM ( cleaned )
 
     });
+
+    // 6. taking a snapshot of your component
+    it( "renders the component", () => {
+        const { asFragment } = render(<Counter />)
+        expect( asFragment() ).toMatchSnapshot();
+    })
+
+    it( "has text content value of 0", () => {
+        /* Updating my component Counter with an attribute provided by RTL: getByTestId
+        ( obviously snapshot test will fail )
+        */
+        const { getByTestId } = render(<Counter />);
+        expect(getByTestId('resultInit')).toHaveTextContent('0');
+    })
 }
 
 //triggerWithReactDOM();
