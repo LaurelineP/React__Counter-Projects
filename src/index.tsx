@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Counter from './components/Counter';
-import './styles/index.scss'
+import './styles/index.scss';
 
-const App =  () => {
+const App: React.FC = () => {
     return (
         <Counter init = {0} />
     )
